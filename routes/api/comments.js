@@ -87,18 +87,13 @@ var putCommentById = async function (ctx, next) {
     };
     return;
   }
-  
+
   let body = {};
 
-  console.log(ctx.request.body.title);
-  console.log(ctx.request.body.content);
-  console.log(comment);
-  //console.log(comment.title);
-  //console.log(comment.content);
-  
-  // if (ctx.request.body.username !== undefined)
+  // username 和 userid 不可更改 
+  // if (ctx.request.body.username !== comment.username)
   //   body.username = ctx.request.body.username;
-  // if (ctx.request.body.userid !== undefined)
+  // if (ctx.request.body.userid !== comment.userid)
   //   body.title = ctx.request.body.userid;
   if (ctx.request.body.title !== comment.title) 
     body.title = ctx.request.body.title;

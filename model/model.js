@@ -1,13 +1,14 @@
 const mongoose = require("mongoose"); 
 const { Schema } = mongoose;
 
-const UserSchema = new Schema({
-  name: String,
-  info: {
-    age: Number,
-    height: Number,
+const UserSchema = new Schema(
+  {
+    username: String,
+    nickname: String,
+    password: String,
   },
-});
+  { timestamps: true }
+);
 
 const ArticleSchema = new Schema(
   {
