@@ -8,7 +8,7 @@ mongoose.connect(
       if (err) {
         console.log('MongoDB connect fail.');
       } else {
-        console.log('MongoDB connect success!!!!');
+        // console.log('MongoDB connect success!!!!');
       }
     }
   );
