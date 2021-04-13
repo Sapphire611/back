@@ -109,12 +109,10 @@ var delArticleById = async function (ctx, next) {
 };
 
 
-// router.prefix('/articles');
-// router.get('/', getArticles);
-router.get("/articles", getArticles);
-router.post("/articles", postArticle);
-router.get("/articles/:id", getArticleById);
-router.put("/articles/:id", putArticleById);
-router.delete("/articles/:id",delArticleById);
+router.get("/articles", getArticles); // 查询所有问题
+router.post("/articles", postArticle); // 发布一个问题
+router.get("/articles/:id", getArticleById); // 查询某个问题
+router.put("/articles/:id", putArticleById); // 更新某个问题
+router.delete("/articles/:id",delArticleById); // 删除某个问题
 
 module.exports = router;

@@ -32,6 +32,7 @@ app.use(async (ctx, next) => {
 });
 
 app.use(allMiddleGroup);
+// 允许从ctx.body获得信息？
 app.use(bodyparser());
 // 路由
 app.use(router.routes(), router.allowedMethods());

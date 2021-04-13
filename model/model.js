@@ -20,7 +20,7 @@ const ArticleSchema = new Schema(
 );
 
 
- CommentSchema = new Schema(
+const CommentSchema = new Schema(
   {
     userid: String,
     username: String,
@@ -31,7 +31,8 @@ const ArticleSchema = new Schema(
   { timestamps: true }
 );
 
-let Users = mongoose.model('User', UserSchema);
-let Articles = mongoose.model('Article', ArticleSchema);
+const Users = mongoose.model('User', UserSchema);
+const Articles = mongoose.model('Article', ArticleSchema);
+const Comments = mongoose.model('Comment', CommentSchema);
 
-module.exports = { Users , Articles };
+module.exports = { Users , Articles , Comments };
