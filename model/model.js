@@ -19,6 +19,18 @@ const ArticleSchema = new Schema(
   { timestamps: true }
 );
 
+
+ CommentSchema = new Schema(
+  {
+    userid: String,
+    username: String,
+    title: String,
+    content: String,
+    articleid: String,
+  },
+  { timestamps: true }
+);
+
 let Users = mongoose.model('User', UserSchema);
 let Articles = mongoose.model('Article', ArticleSchema);
 

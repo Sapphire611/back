@@ -6,10 +6,12 @@ nodejs - backend - test
 ```
 npm config set registry https://registry.npm.taobao.org
 npm install
-node index.js & / npm run start
+npm run start
 ```
 
 ### Git 
+
+> 初始化Git、
 
 ```
 git init 
