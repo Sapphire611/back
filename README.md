@@ -11,7 +11,7 @@ npm run start
 
 ### Git 
 
-> 初始化Git、
+> 初始化Git、上传相关命令
 
 ```
 git init 
