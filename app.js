@@ -1,5 +1,5 @@
 const Koa = require("koa");
-const allMiddleGroup = require('./middlewares/mutimidd');
+// const allMiddleGroup = require('./middlewares/mutimidd');
 const router = require('./routes/router');
 const bodyparser = require('koa-bodyparser');
 const jwt = require('koa-jwt');
