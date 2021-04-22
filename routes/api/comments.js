@@ -1,5 +1,5 @@
 const router = require("@koa/router")();
-const { Articles, Comments } = require("../../model/model");
+const { Articles, Comments, Users } = require("../../model/model");
 
 var getComments = async function (ctx, next) {
   let result = await Comments.find();
@@ -28,7 +28,7 @@ var postComment = async function (ctx, next) {
     ctx.status = 400;
     ctx.body = {
       status: 0,
-      msg: 'article not exist',
+      msg: "article not exist",
     };
     return;
   }
@@ -38,7 +38,7 @@ var postComment = async function (ctx, next) {
     userid,
     title,
     content,
-    articleid
+    articleid,
   });
 
   let result = await newComment.save();
@@ -83,24 +83,24 @@ var putCommentById = async function (ctx, next) {
     ctx.status = 400;
     ctx.body = {
       status: 0,
-      msg: 'comment not exist',
+      msg: "comment not exist",
     };
     return;
   }
 
   let body = {};
 
-  // username 和 userid 不可更改 
+  // username 和 userid 不可更改
   // if (ctx.request.body.username !== comment.username)
   //   body.username = ctx.request.body.username;
   // if (ctx.request.body.userid !== comment.userid)
   //   body.title = ctx.request.body.userid;
-  if (ctx.request.body.title !== comment.title) 
+  if (ctx.request.body.title !== comment.title)
     body.title = ctx.request.body.title;
   if (ctx.request.body.content !== comment.content)
     body.content = ctx.request.body.content;
-  
-    let result = await Comments.updateOne(
+
+  let result = await Comments.updateOne(
     {
       _id: id,
     },
@@ -127,12 +127,12 @@ var delCommentById = async function (ctx, next) {
   if (result) {
     ctx.body = {
       status: 1,
-      msg: 'success',
+      msg: "success",
     };
   } else {
     ctx.body = {
       status: 0,
-      msg: 'delete error',
+      msg: "delete error",
     };
   }
 };
@@ -141,26 +141,37 @@ var getCommentsByAid = async function (ctx, next) {
   let articleid = ctx.params.aid;
   let result = await Comments.find({ articleid });
   if (result.length) {
+    let usernames = result.map((item) => item.username); //抽取
+    usernames = [...new Set(usernames)]; //去重
+    let users = await Users.find({ username: { $in: usernames } });
+    let hash = {};
+    users.map((item) => {
+      hash[item.username] = item.avatar;
+    });
+    result = result.map((item) => {
+      item.avatar = hash[item.username];
+      return item;
+    });
+
     ctx.body = {
       status: 1,
-      msg: 'success',
+      msg: "success",
       body: result,
     };
   } else {
     ctx.body = {
       status: 0,
-      msg: 'no comments',
+      msg: "no comments",
       body: [],
     };
   }
 };
 
-
-router.get("/comments", getComments);  // 查询所有评论
+router.get("/comments", getComments); // 查询所有评论
 router.get("/comments/:id", getCommentById); // 查询某个评论
-router.get('/comments/articles/:aid', getCommentsByAid); // 访问某个问题时，查询对应问题下的所有评论
+router.get("/comments/articles/:aid", getCommentsByAid); // 访问某个问题时，查询对应问题下的所有评论
 router.post("/comments/:aid", postComment); // 发布评论
 router.put("/comments/:id", putCommentById); // 更新某个评论
-router.delete("/comments/:id",delCommentById); // 删除某个评论
+router.delete("/comments/:id", delCommentById); // 删除某个评论
 
 module.exports = router;

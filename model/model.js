@@ -5,7 +5,13 @@ const UserSchema = new Schema(
   {
     username: String,
     nickname: String,
+    role: {
+      type: String,
+      enum: ['admin', 'user'],
+      default: 'user',
+    },
     password: String,
+    avatar: String,
   },
   { timestamps: true }
 );
@@ -28,6 +34,7 @@ const CommentSchema = new Schema(
     title: String,
     content: String,
     articleid: String,
+    avatar:String
   },
   { timestamps: true }
 );
