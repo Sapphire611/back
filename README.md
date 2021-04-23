@@ -46,6 +46,7 @@ Authorization: Bearer aaa.bbb.ccc
 sudo yum - 
 mongod 
 mongo
+netstat -nltp|grep mongod
 ```
 
 ``` linux
