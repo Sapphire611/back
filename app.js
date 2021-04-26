@@ -32,6 +32,7 @@ app.use(bodyparser());
 
 // 引入日志记录
 app.use(require('koa-logger')());
+
 // 紧跟着写一个进行跨域和错误处理的中间件
 app.use(async (ctx, next) => {
   ctx.set('Access-Control-Allow-Origin', '*');

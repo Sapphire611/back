@@ -22,6 +22,7 @@ const ArticleSchema = new Schema(
     username: String,
     title: String,
     content: String,
+    avatar:String
   },
   { timestamps: true }
 );

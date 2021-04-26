@@ -1,9 +1,22 @@
 const router = require("@koa/router")();
-const { Articles } = require("../../model/model");
+const { Users, Articles } = require("../../model/model");
 
 var getArticles = async function (ctx, next) {
   let result = await Articles.find();
   if (result.length) {
+    // 添加部分，根据item.userName 获得头像
+    let usernames = result.map((item) => item.username); //抽取
+    usernames = [...new Set(usernames)]; //去重
+    let users = await Users.find({ username: { $in: usernames } });
+    let hash = {};
+    users.map((item) => {
+      hash[item.username] = item.avatar;
+    });
+    result = result.map((item) => {
+      item.avatar = hash[item.username];
+      return item;
+    });
+
     ctx.body = {
       status: 1,
       msg: "success",

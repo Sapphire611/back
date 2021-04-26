@@ -19,6 +19,7 @@ git init
 git config user.name "Sapphire611"
 git config user.email "liuliyi611@gmail.com"
 git remote add origin "https://github.com/Sapphire611/back"
+git@github.com:Sapphire611/back.git
 ```
 
 ``` console
@@ -43,22 +44,9 @@ Authorization: Bearer aaa.bbb.ccc
 ### linux
 
 ``` linux
+ssh root@[ip]
 sudo yum - 
 mongod 
 mongo
-netstat -nltp|grep mongod
-```
-
-``` linux
-pm2 start ./back/index.js --name api  # 启动应用程序并命名为 "api"
-pm2 start ./back/index.js --watch # 有代码变动自动重启
-pm2 start ./back/index.js -i 3 # 同时启动 3 个实例，负载均衡。或者 -i max
-
-pm2 ls # 查看程序列表
-pm2 logs api          # 显示指定应用程序的日志
-pm2 restart api       # 重启
-pm2 stop api
-pm2 delete api
-
-# api 为程序名称，也可以用 pm2 ls 中显示的序号。或者 all 全部
+netstat -nltp | grep mongod
 ```
