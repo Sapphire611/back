@@ -53,9 +53,16 @@ mongo
 exit
 ```
 
-```
+``` console
 netstat -nltp | grep mongod
 cd /usr/local/mongodb4/bin
 ./mongod --config mongodb.conf
 db.shutdownServer();
+```
+
+> admin.root和cms.admin是两回事，前者只能管理用户，不是用来授权数据库连接权限的
+
+``` mongodb
+db.createUser({user:"root",pwd:"Rabbit611.",roles:["root"]})
+db.createUser({user: "admin",pwd: "Rabbit611.",roles: [{ role: "readWrite", db: "cms" }]})
 ```
