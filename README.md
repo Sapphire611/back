@@ -50,6 +50,12 @@ ssh root@[ip]
 sudo yum - 
 mongod 
 mongo
-netstat -nltp | grep mongod
 exit
+```
+
+```
+netstat -nltp | grep mongod
+cd /usr/local/mongodb4/bin
+./mongod --config mongodb.conf
+db.shutdownServer();
 ```
