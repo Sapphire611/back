@@ -5,8 +5,10 @@ const bodyparser = require('koa-bodyparser');
 const jwt = require('koa-jwt');
 const db = require('./core/db');
 const { secret } = require('./secret');
-
+const test = require('./provider/ali-oss') 
 const app = new Koa();
+
+
 
 
 // 全局错误捕获

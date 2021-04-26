@@ -43,10 +43,13 @@ Authorization: Bearer aaa.bbb.ccc
 
 ### linux
 
+> 退出终端时，使用Exit，不要点右上角的叉
+
 ``` linux
 ssh root@[ip]
 sudo yum - 
 mongod 
 mongo
 netstat -nltp | grep mongod
+exit
 ```

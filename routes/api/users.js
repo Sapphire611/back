@@ -159,7 +159,7 @@ let update = async function (ctx, next) {
 router.get("/users", getUsers); // 得到所有用户
 router.post("/users/login", login); // 用户登录
 router.post("/users/signup", signup); // 用户注册
-router.get('/users/info/:username', info);
-router.post('/users/update', update);
+router.get('/users/info/:username', info); // 查看某个用户的当前信息
+router.post('/users/update', update); // 更新用户信息
 
 module.exports = router;
