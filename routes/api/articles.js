@@ -31,6 +31,41 @@ var getArticles = async function (ctx, next) {
   }
 };
 
+var getArticlesLimit = async function (ctx, next) {
+  let page = ctx.params.page;
+  let pageSize = 8; // 这里写死吧，一页8个问题
+
+  let result = await Articles.find().limit(pageSize).skip((page-1) * pageSize);
+
+  if (result.length) {
+    // 添加部分，根据item.userName 获得头像
+    let usernames = result.map((item) => item.username); //抽取
+    usernames = [...new Set(usernames)]; //去重
+    let users = await Users.find({ username: { $in: usernames } });
+    let hash = {};
+    users.map((item) => {
+      hash[item.username] = item.avatar;
+    });
+    result = result.map((item) => {
+      item.avatar = hash[item.username];
+      return item;
+    });
+
+    ctx.body = {
+      status: 1,
+      msg: "success",
+      body: result,
+    };
+  } else {
+    ctx.body = {
+      status: 0,
+      msg: "no articles",
+      body: [],
+    };
+  }
+};
+
+
 var postArticle = async function (ctx, next) {
   let body = ctx.request.body;
   let { username, userid, title, content } = body;
@@ -136,6 +171,7 @@ var delArticleById = async function (ctx, next) {
 };
 
 router.get("/articles", getArticles); // 查询所有问题
+router.get("/articles/page/:page", getArticlesLimit); // 查询所有问题
 router.post("/articles", postArticle); // 发布一个问题
 router.get("/articles/:id", getArticleById); // 查询某个问题
 router.put("/articles/:id", putArticleById); // 更新某个问题
