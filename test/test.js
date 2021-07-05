@@ -2,8 +2,8 @@ const OSS = require('ali-oss');
 
 let client = new OSS({
   region: "oss-cn-shanghai",
-  accessKeyId: "LTAI5tScSjQ6QioWRXJ6VCQp",
-  accessKeySecret: "woSOgJBcRek50szm8zgE8iHq5Uy0dl",
+  accessKeyId: "LTAI5tScDELETESjQ6QioMEWRXJ6VCQp",
+  accessKeySecret: "woDELETESOgJBcRek50szm8zgE8MEiHq5Uy0dl",
 });
 
 client.useBucket("sshome");
