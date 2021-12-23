@@ -1,8 +1,10 @@
-var mongoose = require('mongoose');
-var testDB = 'mongodb://localhost:27017/Sirius_Delta?readPreference=primary&appname=MongoDB%20Compass&ssl=false';
-// var testDB = 'mongodb://localhost:27017/cms';
+"use strict"
+
+const mongoose = require('mongoose');
+const db = 'mongodb://localhost:27017/Sirius_Delta?readPreference=primary&appname=MongoDB%20Compass&ssl=false';
+
 mongoose.connect(
-    testDB,
+    db,
     { useNewUrlParser: true, useUnifiedTopology: true },
     function (err) {
       if (err) {

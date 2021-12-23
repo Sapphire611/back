@@ -1,6 +1,7 @@
+"use strict"
+
 const Koa = require("koa");
-// const allMiddleGroup = require('./middlewares/mutimidd');
-const router = require('./routes/router');
+const router = require('./routes');
 const bodyparser = require('koa-bodyparser');
 const db = require('./core/db');
 const app = new Koa();
