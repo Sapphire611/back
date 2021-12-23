@@ -1,7 +1,5 @@
 const router = require("@koa/router")();
-const jwt = require("jsonwebtoken");
 const { Users } = require("../../model/model");
-const { secret } = require("../../secret");
 
 var getUsers = async function (ctx, next) {
   let result = await Users.find();
@@ -25,18 +23,6 @@ var login = async function (ctx, next) {
   let result = await Users.findOne({ username, password });
 
   if (result) {
-    let token = jwt.sign(
-      {
-        nickname: result.nickname,
-        role: result.role,
-        userid: result.id,
-        username: username, //payload 部分可解密获取，不能放敏感信息
-      },
-      secret.jwtsecret,
-      {
-        expiresIn: secret.expiresIn, // 授权时效 1 天
-      }
-    );
     ctx.body = {
       msg: "success",
       status: 1,

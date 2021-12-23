@@ -2,14 +2,8 @@ const Koa = require("koa");
 // const allMiddleGroup = require('./middlewares/mutimidd');
 const router = require('./routes/router');
 const bodyparser = require('koa-bodyparser');
-const jwt = require('koa-jwt');
 const db = require('./core/db');
-const { secret } = require('./secret');
-const test = require('./provider/ali-oss') 
 const app = new Koa();
-
-
-
 
 // 全局错误捕获
 app.use(async (ctx, next) => {
@@ -63,14 +57,6 @@ app.use(async (ctx, next) => {
   }
 });
 
-//JWT 鉴权
-app.use(
-  // 筛选掉 /api/user/login 和 /api/user/signup 这两个路由的 JWT 验证。
-  jwt({ secret: secret.jwtsecret }).unless({
-    method: ['OPTIONS', 'GET'],
-    path: [/^\/api\/users\/login/, /^\/api\/users\/signup/],
-  })
-);
 
 app.use(router.routes(), router.allowedMethods());
 app.listen(8082);
