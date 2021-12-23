@@ -40,14 +40,19 @@ const BuriedEventSchema = new Schema(
 BuriedEventSchema.index({ module: 1 }, { unique: true });
 const model = mongoose.model("BuriedEvent", BuriedEventSchema);
 
-
-const clickEnum = {
+const resourceEnum = {
   app_click: "App_click",
   web_click: "Web_click",
   api_click: "API_click",
 };
 
-const buttonNameEnum = {
+const typeEnum = {
+  turn_on: "Turn_on",
+  turn_off: "Turn_off",
+  qr_click: "QR_click"
+};
+
+const ligntButtonNameEnum = {
   light_on: "Light_on",
   light_off: "Light_off",
   airConditioner_on: "AirConditioner_on",
@@ -60,7 +65,36 @@ const buttonNameEnum = {
   led_off: "LED_off",
 };
 
+const curtainButtonNameEnum = {
+  till_out: "Till_out",
+  till_in: "Till_in",
+  up: "Up",
+  down: "Down",
+  stop: "Stop",
+  customize: "Customize",
+};
 
+const lightModeEnum = {
+  mode_talking: "Mode_talking",
+  mode_presentation: "Mode_presentation",
+  mode_customize: "Mode_customize",
+};
+
+const airConditionerModeEnum = {
+  cold: "cold",
+  warm: "warm"
+};
+
+const airConditionerSpeedEnum = {
+  speed_L: "Speed_L",
+  speed_M: "Speed_M",
+  speed_H: "Speed_H"
+};
+
+const microphoneModeEnum = {
+  celling_and_handhold: "Celling&Handhold",
+  handhold_only: "Handhold_only"
+}
 // 控制面板首页模块_点击按钮
 model.discriminator(
   "Button_Click",
@@ -70,12 +104,12 @@ model.discriminator(
         _id: false,
         resource: {
           type: String,
-          enum: Object.values(clickEnum),
+          enum: Object.values(resourceEnum),
           required: true,
         },
         buttonName: {
           type: String,
-          enum: Object.values(buttonNameEnum),
+          enum: Object.values(ligntButtonNameEnum),
           required: true,
         },
         responseTime: {
@@ -91,141 +125,198 @@ model.discriminator(
   })
 );
 
-// 灯光模块
+// 控制面板首页模块_点击全 开/关
 model.discriminator(
-  "light",
+  "All_Click",
   new Schema({
     value: {
       type: new Schema({
         _id: false,
-        // 主机
-        ip: {
+        resource: {
           type: String,
+          enum: Object.values(resourceEnum),
           required: true,
         },
-        port: {
-          type: Number,
+        type: {
+          type: String,
+          enum: Object.values(typeEnum),
           required: true,
+        },
+        time: {
+          type: new Schema({
+            _id: false,
+            Click_time: { type: Date, required: true, },
+          }),
         },
       }),
     },
   })
 );
 
-// 空调模块
+// 控制面板首页模块_查看二维码
 model.discriminator(
-  "airConditioner",
+  "QR_Scan",
   new Schema({
     value: {
       type: new Schema({
         _id: false,
-        protocol: {
+        type: {
           type: String,
-          enum: Object.values(protocolEnum),
-          default: protocolEnum.http,
-        },
-        // 主机
-        C: {
-          type: String,
+          enum: Object.values(typeEnum),
           required: true,
         },
-        port: {
-          type: Number,
-          required: true,
+        time: {
+          type: new Schema({
+            _id: false,
+            Last_time: { type: Date, required: true, },
+          }),
         },
       }),
     },
   })
 );
 
-// 窗帘模块
+// 灯光模块_调节灯光
 model.discriminator(
-  "curtain",
+  "Light_Set",
   new Schema({
-    v: {
+    value: {
       type: new Schema({
         _id: false,
-        // 主机
-        ip: {
+        resource: {
           type: String,
+          enum: Object.values(resourceEnum),
           required: true,
         },
-        port: {
-          type: Number,
+        lightMode: {
+          type: String,
+          enum: Object.values(lightModeEnum),
           required: true,
+        },
+        lightIntensity: {
+          type: Number,
+          min: 0.1,
+          max: 1.0
+        },
+        responseTime: {
+          type: new Schema({
+            _id: false,
+            Click_time: { type: Date, required: true, },
+            Request_time: { type: Date, required: true, },
+            Response_time: { type: Date, required: true, },
+          }),
         },
       }),
     },
   })
 );
 
-const mailSecureTypeEnum = {
-  tls: "tls",
-  starttls: "starttls",
-  ssl: "ssl",
-  none: "none",
-};
-exports.mailSecureTypeEnum = mailSecureTypeEnum;
-
-// 麦克风模块
+// 空调模块_调节空调
 model.discriminator(
-  "microphone",
+  "Airconditioner_Set",
   new Schema({
     value: {
-      type: new Schema({
-        _id: false,
-        // 主机
-        host: {
-          type: String,
-          required: true,
-        },
-        // 端口
-        port: {
-          type: Number,
-          default: 25,
-        },
-        // 加密类型
-        secure: {
-          type: String,
-          enum: Object.values(mailSecureTypeEnum),
-        },
-        // 用户名
-        username: {
-          type: String,
-          trim: true,
-        },
-        // 密码
-        password: {
-          type: String,
-        },
-        // 发件人信息
-        from: {
-          type: String,
-          trim: true,
-          required: true,
-        },
-      }),
+      resource: {
+        type: String,
+        enum: Object.values(resourceEnum),
+        required: true,
+      },
+      model: {
+        type: String,
+        enum: Object.values(airConditionerModeEnum),
+        required: true,
+      },
+      airconditionerSpeed: {
+        type: String,
+        enum: Object.values(airConditionerSpeedEnum),
+        required: true,
+      },
+      responseTime: {
+        type: new Schema({
+          _id: false,
+          Click_time: { type: Date, required: true, },
+          Request_time: { type: Date, required: true, },
+          Response_time: { type: Date, required: true, },
+        }),
+      },
     },
   })
 );
 
-// 异常报错模块
+// 窗帘模块_调节窗帘
 model.discriminator(
-  "error",
+  "Curtain_Set",
   new Schema({
     value: {
-      type: new Schema({
-        _id: false,
-        title: { type: String },
-        // 客户端应用id
-        clientId: {
-          type: String,
-        },
-        // 客户端secret
-        clientSecret: {
-          type: String,
-        },
-      }),
+      resource: {
+        type: String,
+        enum: Object.values(resourceEnum),
+        required: true,
+      },
+      model: {
+        type: String,
+        enum: Object.values(curtainButtonNameEnum),
+        required: true,
+      },
+      responseTime: {
+        type: new Schema({
+          _id: false,
+          Click_time: { type: Date, required: true, },
+          Request_time: { type: Date, required: true, },
+          Response_time: { type: Date, required: true, },
+        }),
+      },
+    },
+  })
+);
+
+// 麦克风模块_调节麦克风
+model.discriminator(
+  "Microphone_Set",
+  new Schema({
+    value: {
+      microphoneMode: {
+        type: String,
+        enum: Object.values(microphoneModeEnum),
+        required: true,
+      },
+      responseTime: {
+        type: new Schema({
+          _id: false,
+          Click_time: { type: Date, required: true, },
+          Request_time: { type: Date, required: true, },
+          Response_time: { type: Date, required: true, },
+        }),
+      },
+    },
+  })
+);
+
+// 异常报错_出现报错
+model.discriminator(
+  "Error",
+  new Schema({
+    value: {
+      errorFrequency: {
+        type: Number,
+        required: true,
+      },
+      errorCode: {
+        type: String,
+        required: true,
+      },
+      buttonName: {
+        type: String,
+        required: true,
+      },
+      scanQR: {
+        type: String,
+        required: true,
+      },
+      time:{
+        type: Date,
+        required: true,
+      }
     },
   })
 );
