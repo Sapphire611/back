@@ -1,6 +1,6 @@
 "use strict";
 
-const { BuriedEvent } = require("../models/buriedEvent");
+const { BuriedEvent,resourceEnum} = require("../models/buriedEvent");
 const {
   CommonService: { getPageOptions },
 } = require("../core/common");
@@ -15,25 +15,25 @@ buriedEventService.findById = async (id) => {
   return await BuriedEvent.findById({ _id: id });
 };
 
-buriedEventService.add = async (event, realBody) => {
-    // const result = await BuriedEvent.create(doc);
-  
-    const typeDict = {
-      "Button_Click": async (doc) => {
-        const body = {
-          "value.resource": realBody.value.resource,
-          "value.buttonName": realBody.value.buttonName,
-          "value.responseTime.Click_time": realBody.value.responseTime.Click_time,
-          "value.responseTime.Request_time": realBody.value.responseTime.Request_Time,
-          "value.responseTime.Response_time": realBody.value.responseTime.Response_Time,
-        };
-        return body;
-      },
-    };
+buriedEventService.add = async (event, realAttributes, realBody) => {
+  // const result = await BuriedEvent.create(doc);
 
-    return await BuriedEvent.discriminators[event].create(
-      await typeDict[event]()
-    );
+  const typeDict = {
+    "Button_Click": () => {
+      const body = {
+        "value.resource": realBody.value.resource,
+        "value.buttonName": realBody.value.buttonName,
+        "value.responseTime.Click_time": realBody.value.responseTime.Click_time,
+        "value.responseTime.Request_time": realBody.value.responseTime.Request_Time,
+        "value.responseTime.Response_time": realBody.value.responseTime.Response_Time,
+      };
+      return body;
+    },
+  };
+
+  return await BuriedEvent.discriminators[event].create(
+    typeDict[event]()
+  );
 };
 
 // buriedEventService.update = async (query, values, opr = "set") => {
@@ -94,7 +94,7 @@ buriedEventService.add = async (event, realBody) => {
 //   await SharedFileCategory.deleteOne(realQuery);
 // };
 
-buriedEventService.list = async (query,attributes) => {
+buriedEventService.list = async (query, attributes) => {
   const realQuery = {};
 
   const realOptions = {

@@ -29,7 +29,7 @@ exports.list = {
 
 exports.add = {
   body: {
-    event: Joi.string().required(), 
+    event: Joi.string().required().valid("Button_Click", "ALL_Click", "QR_Scan", "Light_Set", "Airconditioner_Set", "Curtain_Set", "Microphone_Set", "Error"),
     value: Joi.required()
   }
 };

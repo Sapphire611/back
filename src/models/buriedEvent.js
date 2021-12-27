@@ -45,13 +45,15 @@ const resourceEnum = {
   api_click: "API_click",
 };
 
+exports.resourceEnum = resourceEnum;
+
 const typeEnum = {
   turn_on: "Turn_on",
   turn_off: "Turn_off",
   qr_click: "QR_click"
 };
 
-const ligntButtonNameEnum = {
+const lightButtonNameEnum = {
   light_on: "Light_on",
   light_off: "Light_off",
   airConditioner_on: "AirConditioner_on",
@@ -114,9 +116,9 @@ model.discriminator(
         responseTime: {
           type: new Schema({
             _id: false,
-            Click_time: { type: Date },
-            Request_time: { type: Date },
-            Response_time: { type: Date },
+            Click_time: { type: Number ,required:true},
+            Request_time: { type: Number ,required:true},
+            Response_time: { type: Number ,required:true},
           }),
         },
       }),
@@ -144,7 +146,7 @@ model.discriminator(
         time: {
           type: new Schema({
             _id: false,
-            Click_time: { type: Date, required: true, },
+            Click_time: { type: Number, required: true, },
           }),
         },
       }),
@@ -167,7 +169,7 @@ model.discriminator(
         time: {
           type: new Schema({
             _id: false,
-            Last_time: { type: Date, required: true, },
+            Last_time: { type: Number, required: true, },
           }),
         },
       }),
@@ -200,9 +202,9 @@ model.discriminator(
         responseTime: {
           type: new Schema({
             _id: false,
-            Click_time: { type: Date, required: true, },
-            Request_time: { type: Date, required: true, },
-            Response_time: { type: Date, required: true, },
+            Click_time: { type: Number ,required:true},
+            Request_time: { type: Number ,required:true},
+            Response_time: { type: Number ,required:true},
           }),
         },
       }),
@@ -233,9 +235,9 @@ model.discriminator(
       responseTime: {
         type: new Schema({
           _id: false,
-          Click_time: { type: Date, required: true, },
-          Request_time: { type: Date, required: true, },
-          Response_time: { type: Date, required: true, },
+          Click_time: { type: Number ,required:true},
+          Request_time: { type: Number ,required:true},
+          Response_time: { type: Number ,required:true},
         }),
       },
     },
@@ -260,9 +262,9 @@ model.discriminator(
       responseTime: {
         type: new Schema({
           _id: false,
-          Click_time: { type: Date, required: true, },
-          Request_time: { type: Date, required: true, },
-          Response_time: { type: Date, required: true, },
+          Click_time: { type: Number ,required:true},
+          Request_time: { type: Number ,required:true},
+          Response_time: { type: Number ,required:true},
         }),
       },
     },
@@ -282,9 +284,9 @@ model.discriminator(
       responseTime: {
         type: new Schema({
           _id: false,
-          Click_time: { type: Date, required: true, },
-          Request_time: { type: Date, required: true, },
-          Response_time: { type: Date, required: true, },
+          Click_time: { type: Number ,required:true},
+          Request_time: { type: Number ,required:true},
+          Response_time: { type: Number ,required:true},
         }),
       },
     },
@@ -313,7 +315,7 @@ model.discriminator(
         required: true,
       },
       time: {
-        type: Date,
+        type: Number,
         required: true,
       }
     },

@@ -1,5 +1,5 @@
 "use strict";
 
 exports.baseOptions = {
-  timestamps: true,
+  timestamps: false,
 };

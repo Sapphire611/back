@@ -13,7 +13,9 @@ buriedEventController.list = async (ctx, next) => {
         ...query,
     };
 
-    const result = await buriedEventService.list(realQuery);
+    const realAttributes = {};
+
+    const result = await buriedEventService.list(realQuery,realAttributes);
 
     ctx.status = 200;
     ctx.body = CommonService.responseData(result, ctx.status);
