@@ -8,7 +8,7 @@ const { Types } = Schema;
 
 /**
  * @class buriedEventSchema 埋点事件
- * @memberOf module:FModel
+ * @memberOf FModel
  * @constructor
  * @property {string} event 事件(键)
  * @property {Mixed} value 值
@@ -37,7 +37,6 @@ const BuriedEventSchema = new Schema(
   { ...baseOptions, discriminatorKey: "event" }
 );
 
-BuriedEventSchema.index({ module: 1 }, { unique: true });
 const model = mongoose.model("BuriedEvent", BuriedEventSchema);
 
 const resourceEnum = {
@@ -104,20 +103,20 @@ model.discriminator(
         _id: false,
         resource: {
           type: String,
-          enum: Object.values(resourceEnum),
+          // enum: Object.values(resourceEnum),
           required: true,
         },
         buttonName: {
           type: String,
-          enum: Object.values(ligntButtonNameEnum),
+          // enum: Object.values(lightModeEnum),
           required: true,
         },
         responseTime: {
           type: new Schema({
             _id: false,
-            Click_time: { type: Date, required: true, },
-            Request_time: { type: Date, required: true, },
-            Response_time: { type: Date, required: true, },
+            Click_time: { type: Date },
+            Request_time: { type: Date },
+            Response_time: { type: Date },
           }),
         },
       }),
@@ -313,10 +312,12 @@ model.discriminator(
         type: String,
         required: true,
       },
-      time:{
+      time: {
         type: Date,
         required: true,
       }
     },
   })
 );
+
+exports.BuriedEvent = mongoose.model("BuriedEvent");
