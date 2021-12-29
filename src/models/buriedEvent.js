@@ -5,7 +5,6 @@ const { baseOptions } = require("./base");
 const { Schema } = mongoose;
 const { Types } = Schema;
 
-
 /**
  * @class buriedEventSchema 埋点事件
  * @memberOf FModel
@@ -14,23 +13,10 @@ const { Types } = Schema;
  * @property {Mixed} value 值
  */
 
-// Key = Event_ID 
-const eventEnum = {
-  button_click: "Button_Click",
-  all_click: "ALL_Click",
-  qr_scan: "QR_Scan",
-  light_set: "Light_Set",
-  airconditioner_set: "Airconditioner_Set",
-  curtain_set: "Curtain_Set",
-  microphone_set: "Microphone_Set",
-  error: "Error"
-};
-
 const BuriedEventSchema = new Schema(
   {
     event: {
       type: String,
-      enum: Object.values(eventEnum),
       required: true,
     },
   },
@@ -39,63 +25,6 @@ const BuriedEventSchema = new Schema(
 
 const model = mongoose.model("BuriedEvent", BuriedEventSchema);
 
-const resourceEnum = {
-  app_click: "App_click",
-  web_click: "Web_click",
-  api_click: "API_click",
-};
-
-exports.resourceEnum = resourceEnum;
-
-const typeEnum = {
-  turn_on: "Turn_on",
-  turn_off: "Turn_off",
-  qr_click: "QR_click"
-};
-
-const lightButtonNameEnum = {
-  light_on: "Light_on",
-  light_off: "Light_off",
-  airConditioner_on: "AirConditioner_on",
-  airConditioner_off: "AirConditioner_off",
-  projector_on: "Projector_on",
-  projector_off: "Projector_off",
-  tv_on: "TV_on",
-  tv_off: "TV_off",
-  led_on: "LED_on",
-  led_off: "LED_off",
-};
-
-const curtainButtonNameEnum = {
-  till_out: "Till_out",
-  till_in: "Till_in",
-  up: "Up",
-  down: "Down",
-  stop: "Stop",
-  customize: "Customize",
-};
-
-const lightModeEnum = {
-  mode_talking: "Mode_talking",
-  mode_presentation: "Mode_presentation",
-  mode_customize: "Mode_customize",
-};
-
-const airConditionerModeEnum = {
-  cold: "cold",
-  warm: "warm"
-};
-
-const airConditionerSpeedEnum = {
-  speed_L: "Speed_L",
-  speed_M: "Speed_M",
-  speed_H: "Speed_H"
-};
-
-const microphoneModeEnum = {
-  celling_and_handhold: "Celling&Handhold",
-  handhold_only: "Handhold_only"
-}
 // 控制面板首页模块_点击按钮
 model.discriminator(
   "Button_Click",
@@ -105,20 +34,18 @@ model.discriminator(
         _id: false,
         resource: {
           type: String,
-          // enum: Object.values(resourceEnum),
           required: true,
         },
         buttonName: {
           type: String,
-          // enum: Object.values(lightModeEnum),
           required: true,
         },
         responseTime: {
           type: new Schema({
             _id: false,
-            Click_time: { type: Number ,required:true},
-            Request_time: { type: Number ,required:true},
-            Response_time: { type: Number ,required:true},
+            Click_time: { type: Number, required: true },
+            Request_time: { type: Number, required: true },
+            Response_time: { type: Number, required: true },
           }),
         },
       }),
@@ -135,18 +62,16 @@ model.discriminator(
         _id: false,
         resource: {
           type: String,
-          enum: Object.values(resourceEnum),
           required: true,
         },
         type: {
           type: String,
-          enum: Object.values(typeEnum),
           required: true,
         },
         time: {
           type: new Schema({
             _id: false,
-            Click_time: { type: Number, required: true, },
+            Click_time: { type: Number, required: true },
           }),
         },
       }),
@@ -163,13 +88,12 @@ model.discriminator(
         _id: false,
         type: {
           type: String,
-          enum: Object.values(typeEnum),
           required: true,
         },
         time: {
           type: new Schema({
             _id: false,
-            Last_time: { type: Number, required: true, },
+            Last_time: { type: Number, required: true },
           }),
         },
       }),
@@ -186,25 +110,23 @@ model.discriminator(
         _id: false,
         resource: {
           type: String,
-          enum: Object.values(resourceEnum),
           required: true,
         },
         lightMode: {
           type: String,
-          enum: Object.values(lightModeEnum),
           required: true,
         },
         lightIntensity: {
           type: Number,
           min: 0.1,
-          max: 1.0
+          max: 1.0,
         },
         responseTime: {
           type: new Schema({
             _id: false,
-            Click_time: { type: Number ,required:true},
-            Request_time: { type: Number ,required:true},
-            Response_time: { type: Number ,required:true},
+            Click_time: { type: Number, required: true },
+            Request_time: { type: Number, required: true },
+            Response_time: { type: Number, required: true },
           }),
         },
       }),
@@ -219,25 +141,22 @@ model.discriminator(
     value: {
       resource: {
         type: String,
-        enum: Object.values(resourceEnum),
         required: true,
       },
       model: {
         type: String,
-        enum: Object.values(airConditionerModeEnum),
         required: true,
       },
       airconditionerSpeed: {
         type: String,
-        enum: Object.values(airConditionerSpeedEnum),
         required: true,
       },
       responseTime: {
         type: new Schema({
           _id: false,
-          Click_time: { type: Number ,required:true},
-          Request_time: { type: Number ,required:true},
-          Response_time: { type: Number ,required:true},
+          Click_time: { type: Number, required: true },
+          Request_time: { type: Number, required: true },
+          Response_time: { type: Number, required: true },
         }),
       },
     },
@@ -251,20 +170,18 @@ model.discriminator(
     value: {
       resource: {
         type: String,
-        enum: Object.values(resourceEnum),
         required: true,
       },
-      model: {
+      buttonName: {
         type: String,
-        enum: Object.values(curtainButtonNameEnum),
         required: true,
       },
       responseTime: {
         type: new Schema({
           _id: false,
-          Click_time: { type: Number ,required:true},
-          Request_time: { type: Number ,required:true},
-          Response_time: { type: Number ,required:true},
+          Click_time: { type: Number, required: true },
+          Request_time: { type: Number, required: true },
+          Response_time: { type: Number, required: true },
         }),
       },
     },
@@ -278,15 +195,14 @@ model.discriminator(
     value: {
       microphoneMode: {
         type: String,
-        enum: Object.values(microphoneModeEnum),
         required: true,
       },
       responseTime: {
         type: new Schema({
           _id: false,
-          Click_time: { type: Number ,required:true},
-          Request_time: { type: Number ,required:true},
-          Response_time: { type: Number ,required:true},
+          Click_time: { type: Number, required: true },
+          Request_time: { type: Number, required: true },
+          Response_time: { type: Number, required: true },
         }),
       },
     },
@@ -311,13 +227,13 @@ model.discriminator(
         required: true,
       },
       scanQR: {
-        type: String,
+        type: Number,
         required: true,
       },
       time: {
         type: Number,
         required: true,
-      }
+      },
     },
   })
 );

@@ -13,7 +13,10 @@ buriedEventController.list = async (ctx, next) => {
         ...query,
     };
 
-    const realAttributes = {};
+    const realAttributes = {
+        event : 1,
+        value : 1 
+    };
 
     const result = await buriedEventService.list(realQuery,realAttributes);
 
@@ -29,116 +32,48 @@ buriedEventController.add = async (ctx, next) => {
 
     const realAttributes = {};
 
-    const result = await buriedEventService.add(body.event,realAttributes,realBody);
+    const result = await buriedEventService.add(realBody,realAttributes);
 
     ctx.body = CommonService.responseData(result);
 };
 
 
-// buriedEventController.add = async (ctx, next) => {
-//   try {
-//     const { body } = ctx.validateResult;
-//     logger.info(body);
-//     const result = await SharedFileCategoryService.add(body);
-//     ctx.status = 201;
-//     ctx.body = CommonService.responseData({ id: result._id }, ctx.status);
-
-//     // 添加创建日志
-//     OperationLogService.add(
-//       ctx.session.user._id,
-//       OperationLogActionEnum.create,
-//       OperationLogTypeEnum.sharedFileCategory,
-//       OperationLogModuleEnum.sharedFileCategory,
-//       result._id,
-//       result.name
-//     ).catch((err) => logger.error(err));
-//   } catch (err) {
-//     switch (err.message) {
-//       case "dup_key_name":
-//         ctx.throw(422, err.message, {
-//           code: errorMap.sharedFileCategory.existName,
-//         });
-//         break;
-//     }
-//     throw err;
-//   }
-// };
-
-// sharedFileCategoryController.update = async (ctx, next) => {
-//   try {
-//     const { params, body } = ctx.validateResult;
-//     const realQuery = {
-//       _id: params.id,
-//     };
-//     const dtc = await SharedFileCategoryService.detail(realQuery, {
-//       _id: 1,
-//       name: 1,
-//     });
-//     if (!dtc) {
-//       ctx.throw(422, "cannot find sharedFileCategory", {
-//         code: errorMap.sharedFileCategory.notExistCategory,
-//       });
-//     }
-//     await SharedFileCategoryService.update(realQuery, body);
-//     ctx.status = 201;
-//     ctx.body = CommonService.responseData(undefined, ctx.status);
-//     // 添加更新日志
-//     OperationLogService.add(
-//       ctx.session.user._id,
-//       OperationLogActionEnum.update,
-//       OperationLogTypeEnum.sharedFileCategory,
-//       OperationLogModuleEnum.sharedFileCategory,
-//       dtc._id,
-//       dtc.name
-//     ).catch((err) => logger.error(err));
-//   } catch (err) {
-//     switch (err.message) {
-//       case "dup_key_name":
-//         ctx.throw(422, err.message, {
-//           code: errorMap.sharedFileCategory.existName,
-//         });
-//         break;
-//     }
-//     throw err;
-//   }
-// };
-
-// sharedFileCategoryController.delete = async (ctx, next) => {
-//   try {
-//     const { params } = ctx.validateResult;
-//     const realQuery = {
-//       _id: params.id,
-//     };
-//     const dtc = await SharedFileCategoryService.detail(realQuery, {
-//       _id: 1,
-//     });
-//     if (!dtc) {
-//       ctx.throw(422, "cannot find sharedFileCategory", {
-//         code: errorMap.sharedFileCategory.notExistTemplateCategory,
-//       });
-//     }
-//     await SharedFileCategoryService.delete({ _id: dtc._id });
-//     ctx.status = 204;
-//     // 添加删除日志
-//     OperationLogService.add(
-//       ctx.session.user._id,
-//       OperationLogActionEnum.delete,
-//       OperationLogTypeEnum.sharedFileCategory,
-//       OperationLogModuleEnum.sharedFileCategory,
-//       dtc._id,
-//       dtc.name
-//     ).catch((err) => logger.error(err));
-//   } catch (err) {
-//     switch (err.message) {
-//       case "existName":
-//         ctx.throw(422, err.message, {
-//           code: errorMap.sharedFileCategory.existName,
-//         });
-//         break;
-//     }
-//     throw err;
-//   }
-// };
+buriedEventController.delete = async (ctx, next) => {
+  try {
+    const { params } = ctx.validateResult;
+    const realQuery = {
+      _id: params.id,
+    };
+    const dtc = await SharedFileCategoryService.detail(realQuery, {
+      _id: 1,
+    });
+    if (!dtc) {
+      ctx.throw(422, "cannot find sharedFileCategory", {
+        code: errorMap.sharedFileCategory.notExistTemplateCategory,
+      });
+    }
+    await SharedFileCategoryService.delete({ _id: dtc._id });
+    ctx.status = 204;
+    // 添加删除日志
+    OperationLogService.add(
+      ctx.session.user._id,
+      OperationLogActionEnum.delete,
+      OperationLogTypeEnum.sharedFileCategory,
+      OperationLogModuleEnum.sharedFileCategory,
+      dtc._id,
+      dtc.name
+    ).catch((err) => logger.error(err));
+  } catch (err) {
+    switch (err.message) {
+      case "existName":
+        ctx.throw(422, err.message, {
+          code: errorMap.sharedFileCategory.existName,
+        });
+        break;
+    }
+    throw err;
+  }
+};
 
 // sharedFileCategoryController.list = async (ctx, next) => {
 //   const { query } = ctx.validateResult;

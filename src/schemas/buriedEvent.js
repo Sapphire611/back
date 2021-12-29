@@ -9,7 +9,6 @@ const { getList, getListNoSort } = require("./globalTemplate");
 exports.list = {
   query: {
     search: Joi.string().trim(),
-    sharedFileCategoryId: custom.strObjectId(),
     ...getList,
   },
 };
@@ -29,7 +28,7 @@ exports.list = {
 
 exports.add = {
   body: {
-    event: Joi.string().required().valid("Button_Click", "ALL_Click", "QR_Scan", "Light_Set", "Airconditioner_Set", "Curtain_Set", "Microphone_Set", "Error"),
+    event: Joi.string().required().valid("Button_Click", "All_Click", "QR_Scan", "Light_Set", "Airconditioner_Set", "Curtain_Set", "Microphone_Set", "Error"),
     value: Joi.required()
   }
 };
