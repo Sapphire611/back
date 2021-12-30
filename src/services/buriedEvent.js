@@ -33,92 +33,86 @@ buriedEventService.add = async (realBody, realAttributes) => {
   const typeDict = {
     Button_Click: () => {
       return {
-        "value.resource": realBody.value.resource,
-        "value.buttonName": realBody.value.buttonName,
-        "value.responseTime.Click_time": realBody.value.responseTime.Click_time,
-        "value.responseTime.Request_time":
-          realBody.value.responseTime.Request_Time,
-        "value.responseTime.Response_time":
-          realBody.value.responseTime.Response_Time,
+        resource: realBody.resource,
+        buttonName: realBody.buttonName,
+        Click_time: realBody.Click_time,
+        Request_time: realBody.Request_Time,
+        Response_time: realBody.Response_Time,
       };
     },
 
     All_Click: () => {
       return {
-        "value.resource": realBody.value.resource,
-        "value.type": realBody.value.type,
-        "value.responseTime.time": realBody.value.time.Click_time,
+        resource: realBody.resource,
+        type: realBody.type,
+        Click_time: realBody.Click_time,
       };
     },
 
     QR_Scan: () => {
       return {
-        "value.type": realBody.value.type,
-        "value.time.Last_time": realBody.value.time.Last_time,
+        QR_Click: realBody.QR_Click,
+        Last_time: realBody.Last_time,
       };
     },
 
     Light_Set: () => {
       return {
-        "value.resource": realBody.value.resource,
-        "value.lightMode": realBody.value.lightMode,
-        "value.lightIntensity": realBody.value.lightIntensity,
-        "value.responseTime.Click_time": realBody.value.responseTime.Click_time,
-        "value.responseTime.Request_time":
-          realBody.value.responseTime.Request_Time,
-        "value.responseTime.Response_time":
-          realBody.value.responseTime.Response_Time,
+        resource: realBody.resource,
+        lightMode: realBody.lightMode,
+        lightIntensity: realBody.lightIntensity,
+        Click_time: realBody.Click_time,
+        Request_time: realBody.Request_Time,
+        Response_time: realBody.Response_Time,
       };
     },
 
     Airconditioner_Set: () => {
       return {
-        "value.resource": realBody.value.resource,
-        "value.model": realBody.value.model,
-        "value.airconditionerSpeed": realBody.value.airconditionerSpeed,
-        "value.responseTime.Click_time": realBody.value.responseTime.Click_time,
-        "value.responseTime.Request_time":
-          realBody.value.responseTime.Request_Time,
-        "value.responseTime.Response_time":
-          realBody.value.responseTime.Response_Time,
+        resource: realBody.resource,
+        model: realBody.model,
+        airconditionerSpeed: realBody.airconditionerSpeed,
+        Click_time: realBody.Click_time,
+        Request_time: realBody.Request_Time,
+        Response_time: realBody.Response_Time,
       };
     },
 
     Curtain_Set: () => {
       return {
-        "value.resource": realBody.value.resource,
-        "value.buttonName": realBody.value.buttonName,
-        "value.responseTime.Click_time": realBody.value.responseTime.Click_time,
-        "value.responseTime.Request_time":
-          realBody.value.responseTime.Request_Time,
-        "value.responseTime.Response_time":
-          realBody.value.responseTime.Response_Time,
+        resource: realBody.resource,
+        buttonName: realBody.buttonName,
+        Click_time: realBody.Click_time,
+        Request_time: realBody.Request_Time,
+        Response_time: realBody.Response_Time,
       };
     },
 
     Microphone_Set: () => {
       return {
-        "value.microphoneMode": realBody.value.microphoneMode,
-        "value.responseTime.Click_time": realBody.value.responseTime.Click_time,
-        "value.responseTime.Request_time":
-          realBody.value.responseTime.Request_Time,
-        "value.responseTime.Response_time":
-          realBody.value.responseTime.Response_Time,
+        microphoneMode: realBody.microphoneMode,
+        Click_time: realBody.Click_time,
+        Request_time: realBody.Request_Time,
+        Response_time: realBody.Response_Time,
       };
     },
 
     Error: () => {
       return {
-        "value.errorFrequency": realBody.value.errorFrequency,
-        "value.errorCode": realBody.value.errorCode,
-        "value.buttonName": realBody.value.buttonName,
-        "value.scanQR": realBody.value.scanQR,
-        "value.time": realBody.value.time,
+        errorFrequency: realBody.errorFrequency,
+        errorCode: realBody.errorCode,
+        buttonName: realBody.buttonName,
+        scanQR: realBody.scanQR,
+        time: realBody.time,
       };
     },
   };
 
   return await BuriedEvent.discriminators[event].create(typeDict[event]());
+};
+
+buriedEventService.detail = async (query, attributes) => {
+  return await BuriedEvent.findById({ _id: query._id });
 };
 
 module.exports = buriedEventService;

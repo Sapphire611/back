@@ -10,7 +10,7 @@ const { Types } = Schema;
  * @memberOf FModel
  * @constructor
  * @property {string} event 事件(键)
- * @property {Mixed} value 值
+ * @property {Mixed} ... 其他值
  */
 
 const BuriedEventSchema = new Schema(
@@ -29,53 +29,44 @@ const model = mongoose.model("BuriedEvent", BuriedEventSchema);
 model.discriminator(
   "Button_Click",
   new Schema({
-    value: {
-      type: new Schema({
-        _id: false,
-        resource: {
-          type: String,
-          required: true,
-        },
-        buttonName: {
-          type: String,
-          required: true,
-        },
-        responseTime: {
-          type: new Schema({
-            _id: false,
-            Click_time: { type: Number, required: true },
-            Request_time: { type: Number, required: true },
-            Response_time: { type: Number, required: true },
-          }),
-        },
-      }),
+    _id: false,
+    resource: {
+      type: String,
+      required: true,
     },
+    buttonName: {
+      type: String,
+      required: true,
+    },
+    Click_time: { type: Number },
+    Request_time: { type: Number },
+    Response_time: { type: Number },
   })
 );
+
+// responseTime: {
+//   type: new Schema({
+//     _id: false,
+//     Click_time: { type: Number, required: true },
+//     Request_time: { type: Number, required: true },
+//     Response_time: { type: Number, required: true },
+//   }),
+// },
 
 // 控制面板首页模块_点击全 开/关
 model.discriminator(
   "All_Click",
   new Schema({
-    value: {
-      type: new Schema({
-        _id: false,
-        resource: {
-          type: String,
-          required: true,
-        },
-        type: {
-          type: String,
-          required: true,
-        },
-        time: {
-          type: new Schema({
-            _id: false,
-            Click_time: { type: Number, required: true },
-          }),
-        },
-      }),
+    _id: false,
+    resource: {
+      type: String,
+      required: true,
     },
+    type: {
+      type: String,
+      required: true,
+    },
+    Click_time: { type: Number, required: true },
   })
 );
 
@@ -83,21 +74,12 @@ model.discriminator(
 model.discriminator(
   "QR_Scan",
   new Schema({
-    value: {
-      type: new Schema({
-        _id: false,
-        type: {
-          type: String,
-          required: true,
-        },
-        time: {
-          type: new Schema({
-            _id: false,
-            Last_time: { type: Number, required: true },
-          }),
-        },
-      }),
+    _id: false,
+    QR_Click: {
+      type: String,
+      required: true,
     },
+    Last_time: { type: Number, required: true },
   })
 );
 
@@ -105,32 +87,23 @@ model.discriminator(
 model.discriminator(
   "Light_Set",
   new Schema({
-    value: {
-      type: new Schema({
-        _id: false,
-        resource: {
-          type: String,
-          required: true,
-        },
-        lightMode: {
-          type: String,
-          required: true,
-        },
-        lightIntensity: {
-          type: Number,
-          min: 0.1,
-          max: 1.0,
-        },
-        responseTime: {
-          type: new Schema({
-            _id: false,
-            Click_time: { type: Number, required: true },
-            Request_time: { type: Number, required: true },
-            Response_time: { type: Number, required: true },
-          }),
-        },
-      }),
+    _id: false,
+    resource: {
+      type: String,
+      required: true,
     },
+    lightMode: {
+      type: String,
+      required: true,
+    },
+    lightIntensity: {
+      type: Number,
+      min: 0.1,
+      max: 1.0,
+    },
+    Click_time: { type: Number },
+    Request_time: { type: Number },
+    Response_time: { type: Number },
   })
 );
 
@@ -138,28 +111,21 @@ model.discriminator(
 model.discriminator(
   "Airconditioner_Set",
   new Schema({
-    value: {
-      resource: {
-        type: String,
-        required: true,
-      },
-      model: {
-        type: String,
-        required: true,
-      },
-      airconditionerSpeed: {
-        type: String,
-        required: true,
-      },
-      responseTime: {
-        type: new Schema({
-          _id: false,
-          Click_time: { type: Number, required: true },
-          Request_time: { type: Number, required: true },
-          Response_time: { type: Number, required: true },
-        }),
-      },
+    resource: {
+      type: String,
+      required: true,
     },
+    model: {
+      type: String,
+      required: true,
+    },
+    airconditionerSpeed: {
+      type: String,
+      required: true,
+    },
+    Click_time: { type: Number },
+    Request_time: { type: Number },
+    Response_time: { type: Number },
   })
 );
 
@@ -167,24 +133,17 @@ model.discriminator(
 model.discriminator(
   "Curtain_Set",
   new Schema({
-    value: {
-      resource: {
-        type: String,
-        required: true,
-      },
-      buttonName: {
-        type: String,
-        required: true,
-      },
-      responseTime: {
-        type: new Schema({
-          _id: false,
-          Click_time: { type: Number, required: true },
-          Request_time: { type: Number, required: true },
-          Response_time: { type: Number, required: true },
-        }),
-      },
+    resource: {
+      type: String,
+      required: true,
     },
+    buttonName: {
+      type: String,
+      required: true,
+    },
+    Click_time: { type: Number },
+    Request_time: { type: Number },
+    Response_time: { type: Number },
   })
 );
 
@@ -192,20 +151,13 @@ model.discriminator(
 model.discriminator(
   "Microphone_Set",
   new Schema({
-    value: {
-      microphoneMode: {
-        type: String,
-        required: true,
-      },
-      responseTime: {
-        type: new Schema({
-          _id: false,
-          Click_time: { type: Number, required: true },
-          Request_time: { type: Number, required: true },
-          Response_time: { type: Number, required: true },
-        }),
-      },
+    microphoneMode: {
+      type: String,
+      required: true,
     },
+    Click_time: { type: Number },
+    Request_time: { type: Number },
+    Response_time: { type: Number },
   })
 );
 
@@ -213,27 +165,25 @@ model.discriminator(
 model.discriminator(
   "Error",
   new Schema({
-    value: {
-      errorFrequency: {
-        type: Number,
-        required: true,
-      },
-      errorCode: {
-        type: String,
-        required: true,
-      },
-      buttonName: {
-        type: String,
-        required: true,
-      },
-      scanQR: {
-        type: Number,
-        required: true,
-      },
-      time: {
-        type: Number,
-        required: true,
-      },
+    errorFrequency: {
+      type: String,
+      required: true,
+    },
+    errorCode: {
+      type: Number,
+      required: true,
+    },
+    buttonName: {
+      type: String,
+      required: true,
+    },
+    scanQR: {
+      type: Number,
+      required: true,
+    },
+    time: {
+      type: String,
+      required: true,
     },
   })
 );
