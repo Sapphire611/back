@@ -2,6 +2,7 @@
 
 const Joi = require("joi");
 
+// 校验器封装
 exports.validate = (schema) => {
   const validateFunctions = {};
   if (schema.query) {

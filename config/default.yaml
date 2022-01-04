@@ -1,0 +1,7 @@
+db : mongodb://localhost:27017/sirius?readPreference=primary&appname=MongoDB%20Compass&ssl=false
+port: 8082
+
+logger:
+  file: false
+  console: true
+  

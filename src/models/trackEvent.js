@@ -6,14 +6,14 @@ const { Schema } = mongoose;
 const { Types } = Schema;
 
 /**
- * @class buriedEventSchema 埋点事件
+ * @class trackEventSchema 埋点事件
  * @memberOf FModel
  * @constructor
  * @property {string} event 事件(键)
  * @property {Mixed} ... 其他值
  */
 
-const BuriedEventSchema = new Schema(
+const TrackEventSchema = new Schema(
   {
     event: {
       type: String,
@@ -23,7 +23,7 @@ const BuriedEventSchema = new Schema(
   { ...baseOptions, discriminatorKey: "event" }
 );
 
-const model = mongoose.model("BuriedEvent", BuriedEventSchema);
+const model = mongoose.model("TrackEvent", TrackEventSchema);
 
 // 控制面板首页模块_点击按钮
 model.discriminator(
@@ -188,4 +188,4 @@ model.discriminator(
   })
 );
 
-exports.BuriedEvent = mongoose.model("BuriedEvent");
+exports.TrackEventSchema = mongoose.model("TrackEvent");

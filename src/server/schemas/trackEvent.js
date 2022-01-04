@@ -100,3 +100,59 @@ exports.ErrorEvent = {
     time: Joi.string(),
   },
 };
+
+
+// =====================
+// basic for use
+exports.list = {
+  query: {
+    search: Joi.string().trim(),
+    ...getList,
+  },
+};
+
+exports.count = {
+  query: {
+    search: Joi.string().trim(),
+    sharedFileCategoryId: custom.strObjectId(),
+  },
+};
+
+exports.detail = {
+  params: {
+    id: custom.strObjectId().required(),
+  },
+};
+
+exports.add = {
+  body: {
+    event: Joi.string()
+      .required()
+      .valid(
+        "Button_Click",
+        "All_Click",
+        "QR_Scan",
+        "Light_Set",
+        "Airconditioner_Set",
+        "Curtain_Set",
+        "Microphone_Set",
+        "Error"
+      ),
+    value: Joi.required(),
+  },
+};
+
+// exports.update = {
+//   params: {
+//     id: custom.strObjectId().required(),
+//   },
+//   body: {
+//      ...
+//   },
+// };
+
+exports.delete = {
+  params: {
+    id: custom.strObjectId().required(),
+  },
+};

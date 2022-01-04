@@ -1,10 +1,10 @@
 "use strict"
 
+const config = require('config');
 const mongoose = require('mongoose');
-const db = 'mongodb://localhost:27017/Sirius_Delta?readPreference=primary&appname=MongoDB%20Compass&ssl=false';
 
 mongoose.connect(
-    db,
+    config.db,
     { useNewUrlParser: true, useUnifiedTopology: true },
     function (err) {
       if (err) {
