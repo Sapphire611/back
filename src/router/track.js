@@ -214,6 +214,8 @@ router.get("/trackEvent/:id", validate(trackEventSchema.detail), async (ctx) => 
  */
 router.post("/trackEvent", validate(trackEventSchema.add), async (ctx) => {
 	const { body } = ctx.validateResult;
+	console.log(body);
+	
 	const realBody = {
 		event: body.event,
 		...body.value,
