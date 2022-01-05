@@ -111,13 +111,6 @@ exports.list = {
   },
 };
 
-exports.count = {
-  query: {
-    search: Joi.string().trim(),
-    sharedFileCategoryId: custom.strObjectId(),
-  },
-};
-
 exports.detail = {
   params: {
     id: custom.strObjectId().required(),

@@ -11,6 +11,7 @@ const koaLogger = require('koa-logger');
 const app = {};
 const httpServer = new Koa();
 const router = require('./router/index');
+const mongodb = require('./server/core/mongodb');
 
 const { TrackEventService , PlatformInfoService } = AppContext.instance;
 
@@ -25,11 +26,13 @@ app.open = async () => {
 		console.log('http server listening on port ' + config.port);
 	});
 
+	await mongodb.open();
 	await TrackEventService.open();
 	await PlatformInfoService.open();
 };
 
 app.close = async () => {
+	await mongodb.open();
 	await TrackEventService.close();
 	await PlatformInfoService.close();
 };

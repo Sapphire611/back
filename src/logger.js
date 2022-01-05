@@ -36,7 +36,7 @@ const create = () => {
 			new transports.DailyRotateFile({
 				level: config.logger.level,
 				json: true,
-				dirname: '/var/log/door-adapter',
+				dirname: '/var/log/sirius-mock',
 				filename: 'log-%DATE%.log',
 				datePattern: 'YYYY-MM-DD',
 				zippedArchive: false,

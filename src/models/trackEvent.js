@@ -41,7 +41,7 @@ model.discriminator(
     Click_time: { type: Number },
     Request_time: { type: Number },
     Response_time: { type: Number },
-  })
+  }), 
 );
 
 // responseTime: {
@@ -188,4 +188,4 @@ model.discriminator(
   })
 );
 
-exports.TrackEventSchema = mongoose.model("TrackEvent");
+exports.TrackEvent = mongoose.model("TrackEvent");

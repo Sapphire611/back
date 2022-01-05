@@ -7,14 +7,14 @@ const { CommonService } = require('../server/core/common');
 const trackEventSchema = require('../server/schemas/trackEvent');
 const platformInfoSchema = require('../server/schemas/platformInfo');
 
-const { TrackEventService , PlatformInfoService } = AppContext.instance;
+const { TrackEventService, PlatformInfoService } = AppContext.instance;
 
 const router = new Router();
 
 // test
 router.get('/', async ctx => {
 	ctx.body = {
-		service: 'DOOR-ADAPTER',
+		service: 'Siruis-Mock',
 		env: process.env.NODE_ENV,
 		timestamp: moment().format('LLLL'),
 		t: moment().unix(),
@@ -76,16 +76,16 @@ router.post("/trackAllClickEvent", validate(trackEventSchema.AllClickEvent), asy
  */
 router.post("/trackQRScanEvent", validate(trackEventSchema.QRScanEvent), async (ctx) => {
 	const { body } = ctx.validateResult;
-  const realBody = {
-    event: "QR_Scan",
-    ...body,
-  };
+	const realBody = {
+		event: "QR_Scan",
+		...body,
+	};
 
-  const realAttributes = {};
+	const realAttributes = {};
 
-  const result = await TrackEventService.add(realBody, realAttributes);
+	const result = await TrackEventService.add(realBody, realAttributes);
 
-  ctx.body = CommonService.responseData(result);
+	ctx.body = CommonService.responseData(result);
 });
 
 /**
@@ -93,16 +93,16 @@ router.post("/trackQRScanEvent", validate(trackEventSchema.QRScanEvent), async (
  */
 router.post("/trackLightSetEvent", validate(trackEventSchema.LightSetEvent), async (ctx) => {
 	const { body } = ctx.validateResult;
-  const realBody = {
-    event: "Light_Set",
-    ...body,
-  };
+	const realBody = {
+		event: "Light_Set",
+		...body,
+	};
 
-  const realAttributes = {};
+	const realAttributes = {};
 
-  const result = await TrackEventService.add(realBody, realAttributes);
+	const result = await TrackEventService.add(realBody, realAttributes);
 
-  ctx.body = CommonService.responseData(result);
+	ctx.body = CommonService.responseData(result);
 });
 
 /**
@@ -110,16 +110,16 @@ router.post("/trackLightSetEvent", validate(trackEventSchema.LightSetEvent), asy
  */
 router.post("/trackAirconditionerSetEvent", validate(trackEventSchema.AirconditionerSetEvent), async (ctx) => {
 	const { body } = ctx.validateResult;
-  const realBody = {
-    event: "Airconditioner_Set",
-    ...body,
-  };
+	const realBody = {
+		event: "Airconditioner_Set",
+		...body,
+	};
 
-  const realAttributes = {};
+	const realAttributes = {};
 
-  const result = await TrackEventService.add(realBody, realAttributes);
+	const result = await TrackEventService.add(realBody, realAttributes);
 
-  ctx.body = CommonService.responseData(result);
+	ctx.body = CommonService.responseData(result);
 });
 
 /**
@@ -127,16 +127,16 @@ router.post("/trackAirconditionerSetEvent", validate(trackEventSchema.Airconditi
  */
 router.post("/trackCurtainSetEvent", validate(trackEventSchema.CurtainSetEvent), async (ctx) => {
 	const { body } = ctx.validateResult;
-  const realBody = {
-    event: "Curtain_Set",
-    ...body,
-  };
+	const realBody = {
+		event: "Curtain_Set",
+		...body,
+	};
 
-  const realAttributes = {};
+	const realAttributes = {};
 
-  const result = await TrackEventService.add(realBody, realAttributes);
+	const result = await TrackEventService.add(realBody, realAttributes);
 
-  ctx.body = CommonService.responseData(result);
+	ctx.body = CommonService.responseData(result);
 });
 
 /**
@@ -144,16 +144,16 @@ router.post("/trackCurtainSetEvent", validate(trackEventSchema.CurtainSetEvent),
  */
 router.post("/trackMicrophoneSetEvent", validate(trackEventSchema.MicrophoneSetEvent), async (ctx) => {
 	const { body } = ctx.validateResult;
-  const realBody = {
-    event: "Microphone_Set",
-    ...body,
-  };
+	const realBody = {
+		event: "Microphone_Set",
+		...body,
+	};
 
-  const realAttributes = {};
+	const realAttributes = {};
 
-  const result = await TrackEventService.add(realBody, realAttributes);
+	const result = await TrackEventService.add(realBody, realAttributes);
 
-  ctx.body = CommonService.responseData(result);
+	ctx.body = CommonService.responseData(result);
 });
 
 /**
@@ -161,20 +161,20 @@ router.post("/trackMicrophoneSetEvent", validate(trackEventSchema.MicrophoneSetE
  */
 router.post("/trackErrorEvent", validate(trackEventSchema.ErrorEvent), async (ctx) => {
 	const { body } = ctx.validateResult;
-  const realBody = {
-    event: "Error",
-    ...body,
-  };
+	const realBody = {
+		event: "Error",
+		...body,
+	};
 
-  const realAttributes = {};
+	const realAttributes = {};
 
-  const result = await TrackEventService.add(realBody, realAttributes);
+	const result = await TrackEventService.add(realBody, realAttributes);
 
-  ctx.body = CommonService.responseData(result);
+	ctx.body = CommonService.responseData(result);
 });
 
 /**
- * 获取所有埋点事件  GET /api/v1/buriedEvent
+ * 获取所有埋点事件  GET /trackEvent
  */
 router.get("/trackEvent", validate(trackEventSchema.list), async (ctx) => {
 	const { query } = ctx.validateResult;
@@ -182,10 +182,7 @@ router.get("/trackEvent", validate(trackEventSchema.list), async (ctx) => {
 		...query,
 	};
 
-	const realAttributes = {
-		event: 1,
-		value: 1,
-	};
+	const realAttributes = { "__v": 0 };
 
 	const result = await TrackEventService.list(realQuery, realAttributes);
 
@@ -194,22 +191,21 @@ router.get("/trackEvent", validate(trackEventSchema.list), async (ctx) => {
 });
 
 /**
- * 查询一个埋点事件  GET /api/v1/buriedEvent/:id
+ * 查询一个埋点事件  POST /trackEvent
  */
 router.get("/trackEvent/:id", validate(trackEventSchema.detail), async (ctx) => {
 	const { params } = ctx.validateResult;
 	const realQuery = {
 		_id: params.id,
 	};
-	const result = await TrackEventService.detail(realQuery, {
-		event: 1,
-		value: 1,
-	});
+
+	const realAttributes = { "__v": 0 };
+
+	const result = await TrackEventService.detail(realQuery, realAttributes);
 
 	if (!result) {
 		ctx.throw(404);
 	}
-
 	ctx.body = CommonService.responseData(result);
 });
 
@@ -219,12 +215,11 @@ router.get("/trackEvent/:id", validate(trackEventSchema.detail), async (ctx) => 
 router.post("/trackEvent", validate(trackEventSchema.add), async (ctx) => {
 	const { body } = ctx.validateResult;
 	const realBody = {
-		...body,
+		event: body.event,
+		...body.value,
 	};
 
-	const realAttributes = {};
-
-	const result = await TrackEventService.add(realBody, realAttributes);
+	const result = await TrackEventService.add(realBody);
 
 	ctx.body = CommonService.responseData(result);
 });
