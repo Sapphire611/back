@@ -26,15 +26,10 @@ app.open = async () => {
 		console.log('http server listening on port ' + config.port);
 	});
 
-	await mongodb.open();
-	await TrackEventService.open();
-	await PlatformInfoService.open();
 };
 
 app.close = async () => {
-	await mongodb.open();
-	await TrackEventService.close();
-	await PlatformInfoService.close();
+
 };
 
 module.exports = app;
