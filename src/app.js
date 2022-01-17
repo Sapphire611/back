@@ -13,8 +13,6 @@ const httpServer = new Koa();
 const router = require('./router/index');
 const mongodb = require('./server/core/mongodb');
 
-const { TrackEventService , PlatformInfoService } = AppContext.instance;
-
 app.open = async () => {
 	httpServer.use(koaCors())
 		.use(koaLogger())

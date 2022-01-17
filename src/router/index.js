@@ -2,7 +2,7 @@ const compose = require('koa-compose');
 const _ = require('lodash');
 
 let mods = [
-	require('./track'),
+	require('./mock'),
 ];
 
 let routers = [];

@@ -1,0 +1,1013 @@
+{
+	"info": {
+		"_postman_id": "204d1efd-14dc-4409-acce-36f9b36584a2",
+		"name": "中欧防疫接口",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "疫苗接种",
+			"item": [
+				{
+					"name": "获取token",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://apigw.shec.edu.cn/gateway/auth/accesstoken/create?appId=saca_9MMiacpy4F&appSecret=nLpYjx9tcJjjFLa6OABNFFW3wYKMnmF0",
+							"protocol": "https",
+							"host": [
+								"apigw",
+								"shec",
+								"edu",
+								"cn"
+							],
+							"path": [
+								"gateway",
+								"auth",
+								"accesstoken",
+								"create"
+							],
+							"query": [
+								{
+									"key": "appId",
+									"value": "saca_9MMiacpy4F"
+								},
+								{
+									"key": "appSecret",
+									"value": "nLpYjx9tcJjjFLa6OABNFFW3wYKMnmF0"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://apigw.shec.edu.cn/gateway/auth/accesstoken/create?appId=saca_9MMiacpy4F&appSecret=nLpYjx9tcJjjFLa6OABNFFW3wYKMnmF0",
+									"protocol": "https",
+									"host": [
+										"apigw",
+										"shec",
+										"edu",
+										"cn"
+									],
+									"path": [
+										"gateway",
+										"auth",
+										"accesstoken",
+										"create"
+									],
+									"query": [
+										{
+											"key": "appId",
+											"value": "saca_9MMiacpy4F"
+										},
+										{
+											"key": "appSecret",
+											"value": "nLpYjx9tcJjjFLa6OABNFFW3wYKMnmF0"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "messagecode",
+									"value": "1000"
+								},
+								{
+									"key": "messagetext",
+									"value": "%E6%9C%8D%E5%8A%A1%E8%AF%B7%E6%B1%82%E6%88%90%E5%8A%9F%EF%BC%8C%E5%B9%B6%E4%B8%94%E4%B8%9A%E5%8A%A1%E6%93%8D%E4%BD%9C%E6%88%90%E5%8A%9F"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Length",
+									"value": "272"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "UqZBpD3n3iPIDwJU=v1L8UxJdagTRA; Expires=Tue, 09-Nov-2021 04:22:12 GMT; Path=/"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlSWQiOltdLCJpc3MiOiJnYXRld2F5IiwiZXhwIjoxNjM2NTE2MzAzLCJpYXQiOjE2MzY0Mjk5MDMsImp0aSI6IjgyZWU1MjUwLWNhZmQtNGVhZi1hZjM1LTJhM2MwZDFlMzM1MyIsImFjY291bnQiOiJ6b2dqZ3N4eSJ9.2Pzb3y7S_8YaMBjn8u65_aij9ImtMahNvECzZchesuQ\"\n}"
+						}
+					]
+				},
+				{
+					"name": "获取接种记录",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access_token",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlSWQiOltdLCJpc3MiOiJnYXRld2F5IiwiZXhwIjoxNjM2NTE2MzAzLCJpYXQiOjE2MzY0Mjk5MDMsImp0aSI6IjgyZWU1MjUwLWNhZmQtNGVhZi1hZjM1LTJhM2MwZDFlMzM1MyIsImFjY291bnQiOiJ6b2dqZ3N4eSJ9.2Pzb3y7S_8YaMBjn8u65_aij9ImtMahNvECzZchesuQ",
+								"type": "text"
+							},
+							{
+								"key": "authoritytype",
+								"value": "2",
+								"type": "text"
+							},
+							{
+								"key": "elementsVersion",
+								"value": "1.00",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"xm\":\"王毅\",\n    \"zjhm\":\"342128197911080210\"\n}"
+						},
+						"url": {
+							"raw": "https://apigw.shec.edu.cn/gateway/interface-gj-xgymjzxx/getInfo",
+							"protocol": "https",
+							"host": [
+								"apigw",
+								"shec",
+								"edu",
+								"cn"
+							],
+							"path": [
+								"gateway",
+								"interface-gj-xgymjzxx",
+								"getInfo"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取接种记录",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "access_token",
+										"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlSWQiOltdLCJpc3MiOiJnYXRld2F5IiwiZXhwIjoxNjM2NTE2MzAzLCJpYXQiOjE2MzY0Mjk5MDMsImp0aSI6IjgyZWU1MjUwLWNhZmQtNGVhZi1hZjM1LTJhM2MwZDFlMzM1MyIsImFjY291bnQiOiJ6b2dqZ3N4eSJ9.2Pzb3y7S_8YaMBjn8u65_aij9ImtMahNvECzZchesuQ",
+										"type": "text"
+									},
+									{
+										"key": "authoritytype",
+										"value": "2",
+										"type": "text"
+									},
+									{
+										"key": "elementsVersion",
+										"value": "1.00",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"xm\":\"王毅\",\n    \"zjhm\":\"342128197911080210\"\n}"
+								},
+								"url": {
+									"raw": "https://apigw.shec.edu.cn/gateway/interface-gj-xgymjzxx/getInfo",
+									"protocol": "https",
+									"host": [
+										"apigw",
+										"shec",
+										"edu",
+										"cn"
+									],
+									"path": [
+										"gateway",
+										"interface-gj-xgymjzxx",
+										"getInfo"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 09 Nov 2021 03:53:20 GMT"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Length",
+									"value": "730"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "UqZBpD3n3iPIDwJU=v1LMUxJdagce0; Expires=Tue, 09-Nov-2021 04:23:37 GMT; Path=/"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"message\": \"\",\n    \"data\": \"{\\\"code\\\":\\\"200\\\",\\\"data\\\":\\\"{\\\\\\\"gj\\\\\\\":\\\\\\\"156\\\\\\\",\\\\\\\"gazt\\\\\\\":\\\\\\\"01\\\\\\\",\\\\\\\"xm\\\\\\\":\\\\\\\"王毅\\\\\\\",\\\\\\\"zjlx\\\\\\\":\\\\\\\"01\\\\\\\",\\\\\\\"grdabh\\\\\\\":\\\\\\\"310120210607180474\\\\\\\",\\\\\\\"jzxxlb\\\\\\\":\\\\\\\"[{\\\\\\\\\\\\\\\"ymmc\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"5601\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"jc\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"1\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"jzrq\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"20210607T000000\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"scqy\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"02\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"jzd\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"31\\\\\\\\\\\\\\\"},{\\\\\\\\\\\\\\\"ymmc\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"5601\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"jc\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"2\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"jzrq\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"20210630T000000\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"scqy\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"02\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"jzd\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"31\\\\\\\\\\\\\\\"}]\\\\\\\",\\\\\\\"zjhm\\\\\\\":\\\\\\\"342128197911080210\\\\\\\"}\\\",\\\"message\\\":\\\"查询成功！\\\"}\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "根据二维码信息获取记录",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic em9namdzeHk6RHQ1MXZrWHRDMg==",
+						"type": "text"
+					},
+					{
+						"key": "replayId",
+						"value": "29879011",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\":\"https://s.sh.gov.cn/9a3d41004031be43447da196e461061636430538100\"\n}"
+				},
+				"url": {
+					"raw": "https://apigw.shec.edu.cn/interface-sj-jkmjk/getInfo",
+					"protocol": "https",
+					"host": [
+						"apigw",
+						"shec",
+						"edu",
+						"cn"
+					],
+					"path": [
+						"interface-sj-jkmjk",
+						"getInfo"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "根据二维码信息获取记录",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic em9namdzeHk6RHQ1MXZrWHRDMg==",
+								"type": "text"
+							},
+							{
+								"key": "replayId",
+								"value": "29879011",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\":\"https://s.sh.gov.cn/9a3d41004031be43447da196e461061636430538100\"\n}"
+						},
+						"url": {
+							"raw": "https://apigw.shec.edu.cn/interface-sj-jkmjk/getInfo",
+							"protocol": "https",
+							"host": [
+								"apigw",
+								"shec",
+								"edu",
+								"cn"
+							],
+							"path": [
+								"interface-sj-jkmjk",
+								"getInfo"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Apache-Coyote/1.1"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin,No-Cache,X-Requested-With,If-Modified-Since,Cookie,Pragma,Last-Modified,Cache-Control,Expires,Content-Type,X-E4M-With,signature,replayId,token,ajaxrequest,scopes,Authorization,JSESSIONID"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Server,Date,Connection,Content-Encoding,Content-Length,Content-Type,Access-Control-Allow-Origin,Allow-Control-Allow-Methods,licenseMsg"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST, PUT, GET, DELETE, OPTIONS, HEAD, TRACE, PATCH, CONNECT"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 09 Nov 2021 04:00:19 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "UqZBpD3n3iPIDwJU=v1LMUxJcScLJY; Expires=Tue, 09-Nov-2021 04:33:20 GMT; Path=/"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": \"0\",\n    \"data\": \"{\\\"xm\\\":\\\"王毅\\\",\\\"phone\\\":\\\"134****4200\\\",\\\"type\\\":\\\"00\\\",\\\"zjhm\\\":\\\"342128********0210\\\",\\\"dzzz\\\":\\\"1\\\",\\\"uuid\\\":\\\"AQABAQAAAAd+J4/Jwb1hMtUNKdNPdvxUuDKO7Of9NYSdFakh5VMHhL9/av7ge5WvM7i9OeyLSLU=\\\"}\",\n    \"message\": \"\"\n}"
+				}
+			]
+		},
+		{
+			"name": "行程核验查询短信验证",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic em9namdzeHk6RHQ1MXZrWHRDMg==",
+						"type": "text"
+					},
+					{
+						"key": "replayId",
+						"value": "2372342345",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"phone\":\"13482504200\"\n}\n"
+				},
+				"url": {
+					"raw": "https://apigw.shec.edu.cn/interface-gj-gxb-xchy/cxdxyzfw",
+					"protocol": "https",
+					"host": [
+						"apigw",
+						"shec",
+						"edu",
+						"cn"
+					],
+					"path": [
+						"interface-gj-gxb-xchy",
+						"cxdxyzfw"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "行程核验查询短信验证",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic em9namdzeHk6RHQ1MXZrWHRDMg==",
+								"type": "text"
+							},
+							{
+								"key": "replayId",
+								"value": "237234234",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone\":\"13482504200\"\n}\n"
+						},
+						"url": {
+							"raw": "https://apigw.shec.edu.cn/interface-gj-gxb-xchy/cxdxyzfw",
+							"protocol": "https",
+							"host": [
+								"apigw",
+								"shec",
+								"edu",
+								"cn"
+							],
+							"path": [
+								"interface-gj-gxb-xchy",
+								"cxdxyzfw"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Apache-Coyote/1.1"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin,No-Cache,X-Requested-With,If-Modified-Since,Cookie,Pragma,Last-Modified,Cache-Control,Expires,Content-Type,X-E4M-With,signature,replayId,token,ajaxrequest,scopes,Authorization,JSESSIONID"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Server,Date,Connection,Content-Encoding,Content-Length,Content-Type,Access-Control-Allow-Origin,Allow-Control-Allow-Methods,licenseMsg"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST, PUT, GET, DELETE, OPTIONS, HEAD, TRACE, PATCH, CONNECT"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 09 Nov 2021 03:30:39 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "UqZBpD3n3iPIDwJU=v1LMUxJcScLJY; Expires=Tue, 09-Nov-2021 04:03:39 GMT; Path=/"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"message\": \"\",\n    \"data\": \"{\\\"code\\\":200,\\\"data\\\":{\\\"status\\\":\\\"1\\\",\\\"code\\\":\\\"00\\\",\\\"errorDesc\\\":\\\"请求成功\\\",\\\"result\\\":\\\"短信发送中,请注意查收\\\",\\\"queryId\\\":\\\"59b32cd614fe4e28a4214050394e48fd\\\"},\\\"message\\\":\\\"success\\\"}\"\n}"
+				}
+			]
+		},
+		{
+			"name": "行程核验信息服务",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic em9namdzeHk6RHQ1MXZrWHRDMg==",
+						"type": "text"
+					},
+					{
+						"key": "replayId",
+						"value": "938464123",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"phone\":\"13482504200\",\n    \"type\":\"231\",\n    \"city\":\"420000\",\n    \"verification\":\"622388\"\n}\n"
+				},
+				"url": {
+					"raw": "https://apigw.shec.edu.cn/interface-gj-gxb-xchy/xxfw",
+					"protocol": "https",
+					"host": [
+						"apigw",
+						"shec",
+						"edu",
+						"cn"
+					],
+					"path": [
+						"interface-gj-gxb-xchy",
+						"xxfw"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "行程核验信息服务",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic em9namdzeHk6RHQ1MXZrWHRDMg==",
+								"type": "text"
+							},
+							{
+								"key": "replayId",
+								"value": "938464123",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone\":\"13482504200\",\n    \"type\":\"231\",\n    \"city\":\"420000\",\n    \"verification\":\"622388\"\n}\n"
+						},
+						"url": {
+							"raw": "https://apigw.shec.edu.cn/interface-gj-gxb-xchy/xxfw",
+							"protocol": "https",
+							"host": [
+								"apigw",
+								"shec",
+								"edu",
+								"cn"
+							],
+							"path": [
+								"interface-gj-gxb-xchy",
+								"xxfw"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Apache-Coyote/1.1"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin,No-Cache,X-Requested-With,If-Modified-Since,Cookie,Pragma,Last-Modified,Cache-Control,Expires,Content-Type,X-E4M-With,signature,replayId,token,ajaxrequest,scopes,Authorization,JSESSIONID"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Server,Date,Connection,Content-Encoding,Content-Length,Content-Type,Access-Control-Allow-Origin,Allow-Control-Allow-Methods,licenseMsg"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST, PUT, GET, DELETE, OPTIONS, HEAD, TRACE, PATCH, CONNECT"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 09 Nov 2021 04:07:52 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "UqZBpD3n3iPIDwJU=v1LMUxJcScLJY; Expires=Tue, 09-Nov-2021 04:40:53 GMT; Path=/"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"message\": \"\",\n    \"data\": \"{\\\"code\\\":200,\\\"data\\\":{\\\"status\\\":\\\"1\\\",\\\"code\\\":\\\"00\\\",\\\"errorDesc\\\":\\\"请求成功\\\",\\\"result\\\":{\\\"value\\\":\\\"1\\\"},\\\"queryId\\\":\\\"0258ea1a91614dae870b3eed54978e81\\\"},\\\"message\\\":\\\"success\\\"}\"\n}"
+				}
+			]
+		},
+		{
+			"name": "核酸检测数据",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic em9namdzeHk6RHQ1MXZrWHRDMg==",
+						"type": "text"
+					},
+					{
+						"key": "replayId",
+						"value": "A2781234",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"xm\":\"曹晖\",\n    \"zjhm\":\"310107198307053019\"\n}\n"
+				},
+				"url": {
+					"raw": "https://apigw.shec.edu.cn/interface-gj-xgfy-hsjcsjfwjk/getInfo",
+					"protocol": "https",
+					"host": [
+						"apigw",
+						"shec",
+						"edu",
+						"cn"
+					],
+					"path": [
+						"interface-gj-xgfy-hsjcsjfwjk",
+						"getInfo"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "核酸检测数据",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic em9namdzeHk6RHQ1MXZrWHRDMg==",
+								"type": "text"
+							},
+							{
+								"key": "replayId",
+								"value": "A2781234",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"xm\":\"曹晖\",\n    \"zjhm\":\"310107198307053019\"\n}\n"
+						},
+						"url": {
+							"raw": "https://apigw.shec.edu.cn/interface-gj-xgfy-hsjcsjfwjk/getInfo",
+							"protocol": "https",
+							"host": [
+								"apigw",
+								"shec",
+								"edu",
+								"cn"
+							],
+							"path": [
+								"interface-gj-xgfy-hsjcsjfwjk",
+								"getInfo"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Apache-Coyote/1.1"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin,No-Cache,X-Requested-With,If-Modified-Since,Cookie,Pragma,Last-Modified,Cache-Control,Expires,Content-Type,X-E4M-With,signature,replayId,token,ajaxrequest,scopes,Authorization,JSESSIONID"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Server,Date,Connection,Content-Encoding,Content-Length,Content-Type,Access-Control-Allow-Origin,Allow-Control-Allow-Methods,licenseMsg"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST, PUT, GET, DELETE, OPTIONS, HEAD, TRACE, PATCH, CONNECT"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 09 Nov 2021 04:06:48 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "UqZBpD3n3iPIDwJU=v1LMUxJcScLJY; Expires=Tue, 09-Nov-2021 04:45:15 GMT; Path=/"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"message\": \"\",\n    \"data\": \"{\\\"code\\\":\\\"200\\\",\\\"data\\\":{\\\"xm\\\":\\\"曹晖\\\",\\\"hsjcsj\\\":\\\"2021-11-03 10:03:10.0\\\",\\\"hsjcjgmc\\\":\\\"上海金域医学检验所\\\",\\\"zjhm\\\":\\\"310107198307053019\\\",\\\"hsjcjg\\\":\\\"阴性\\\"},\\\"message\\\":\\\"查询成功！\\\"}\"\n}"
+				}
+			]
+		},
+		{
+			"name": "随申码加密接口 new",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlSWQiOltdLCJpc3MiOiJnYXRld2F5IiwiZXhwIjoxNjM2NTE2MzAzLCJpYXQiOjE2MzY0Mjk5MDMsImp0aSI6IjgyZWU1MjUwLWNhZmQtNGVhZi1hZjM1LTJhM2MwZDFlMzM1MyIsImFjY291bnQiOiJ6b2dqZ3N4eSJ9.2Pzb3y7S_8YaMBjn8u65_aij9ImtMahNvECzZchesuQ",
+						"type": "text"
+					},
+					{
+						"key": "authoritytype",
+						"value": "2",
+						"type": "text"
+					},
+					{
+						"key": "elementsVersion",
+						"value": "1.00",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"XM\":\"马文娟\",\n    \"ZJHM\":\"141124199308220181\"\n}\n"
+				},
+				"url": {
+					"raw": "https://apigw.shec.edu.cn/gateway/interface-sj-ssmjm/getInfo",
+					"protocol": "https",
+					"host": [
+						"apigw",
+						"shec",
+						"edu",
+						"cn"
+					],
+					"path": [
+						"gateway",
+						"interface-sj-ssmjm",
+						"getInfo"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "随申码加密接口 new",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access_token",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlSWQiOltdLCJpc3MiOiJnYXRld2F5IiwiZXhwIjoxNjM2NTE2MzAzLCJpYXQiOjE2MzY0Mjk5MDMsImp0aSI6IjgyZWU1MjUwLWNhZmQtNGVhZi1hZjM1LTJhM2MwZDFlMzM1MyIsImFjY291bnQiOiJ6b2dqZ3N4eSJ9.2Pzb3y7S_8YaMBjn8u65_aij9ImtMahNvECzZchesuQ",
+								"type": "text"
+							},
+							{
+								"key": "authoritytype",
+								"value": "2",
+								"type": "text"
+							},
+							{
+								"key": "elementsVersion",
+								"value": "1.00",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"XM\":\"马文娟\",\n    \"ZJHM\":\"141124199308220181\"\n}\n"
+						},
+						"url": {
+							"raw": "https://apigw.shec.edu.cn/gateway/interface-sj-ssmjm/getInfo",
+							"protocol": "https",
+							"host": [
+								"apigw",
+								"shec",
+								"edu",
+								"cn"
+							],
+							"path": [
+								"gateway",
+								"interface-sj-ssmjm",
+								"getInfo"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 09 Nov 2021 03:53:54 GMT"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Content-Length",
+							"value": "55"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "UqZBpD3n3iPIDwJU=v1LMUxJdagce0; Expires=Tue, 09-Nov-2021 04:26:55 GMT; Path=/"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": \"0\",\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"type\": \"00\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "随申码加密接口 old",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Basic em9namdzeHk6RHQ1MXZrWHRDMg=="
+					},
+					{
+						"key": "replayId",
+						"type": "text",
+						"value": "63289341211"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"XM\":\"王毅\",\n    \"ZJHM\":\"342128197911080210\"\n}"
+				},
+				"url": {
+					"raw": "https://apigw.shec.edu.cn/interface-sj-ssmjm/getInfo",
+					"protocol": "https",
+					"host": [
+						"apigw",
+						"shec",
+						"edu",
+						"cn"
+					],
+					"path": [
+						"interface-sj-ssmjm",
+						"getInfo"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "随申码加密接口 old",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Basic em9namdzeHk6RHQ1MXZrWHRDMg=="
+							},
+							{
+								"key": "replayId",
+								"type": "text",
+								"value": "63289341211"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"XM\":\"王毅\",\n    \"ZJHM\":\"342128197911080210\"\n}"
+						},
+						"url": {
+							"raw": "https://apigw.shec.edu.cn/interface-sj-ssmjm/getInfo",
+							"protocol": "https",
+							"host": [
+								"apigw",
+								"shec",
+								"edu",
+								"cn"
+							],
+							"path": [
+								"interface-sj-ssmjm",
+								"getInfo"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Apache-Coyote/1.1"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin,No-Cache,X-Requested-With,If-Modified-Since,Cookie,Pragma,Last-Modified,Cache-Control,Expires,Content-Type,X-E4M-With,signature,replayId,token,ajaxrequest,scopes,Authorization,JSESSIONID"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Server,Date,Connection,Content-Encoding,Content-Length,Content-Type,Access-Control-Allow-Origin,Allow-Control-Allow-Methods,licenseMsg"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST, PUT, GET, DELETE, OPTIONS, HEAD, TRACE, PATCH, CONNECT"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 09 Nov 2021 03:54:34 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "UqZBpD3n3iPIDwJU=v1LMUxJcScLJY; Expires=Tue, 09-Nov-2021 04:27:34 GMT; Path=/"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": \"0\",\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"type\": \"00\"\n        }\n    ]\n}"
+				}
+			]
+		}
+	]
+}

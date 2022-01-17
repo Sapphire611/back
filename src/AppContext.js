@@ -1,6 +1,6 @@
 const moment = require('moment');
 const config = require('config');
-const logger = require('./logger').logger.child({ module: 'sirius-mock' });
+const logger = require('./logger').logger.child({ module: 'ceibs-mock' });
 
 class AppContext {
 	static get instance() {
