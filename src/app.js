@@ -2,7 +2,7 @@
  * @Author: Sapphire Liu
  * @Date: 2022-07-21 16:55:08
  * @LastEditors: Sapphire Liu
- * @LastEditTime: 2022-07-21 17:01:51
+ * @LastEditTime: 2022-07-21 17:16:57
  * @Description: app.js
  */
 const config = require("config");
@@ -40,7 +40,7 @@ app.open = async () => {
 };
 
 app.close = async () => {
-  await mongodb.open();
+  // await mongodb.open();
   // await TrackEventService.close();
   // await PlatformInfoService.close();
 };
