@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-			name: "sirius-mock",
+			name: "feishu-test",
       script: "./src/app.js",
       instances: 1,
       autorestart: false,
