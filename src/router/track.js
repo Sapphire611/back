@@ -2,7 +2,7 @@
  * @Author: Sapphire Liu
  * @Date: 2022-07-21 16:56:29
  * @LastEditors: Sapphire Liu
- * @LastEditTime: 2022-07-21 17:02:29
+ * @LastEditTime: 2022-07-22 12:41:53
  * @Description: router for feishu-test...
  */
 const moment = require("moment");
@@ -24,7 +24,7 @@ router.get("/", async (ctx) => {
 });
 
 // test
-router.get("/test", async (ctx) => {
+router.post("/test", async (ctx) => {
   const body = ctx.request.body;
 
   logger.info(JSON.stringify(body));
