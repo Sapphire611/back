@@ -2,7 +2,7 @@
  * @Author: Sapphire Liu
  * @Date: 2022-07-21 16:55:08
  * @LastEditors: Sapphire Liu
- * @LastEditTime: 2022-07-21 17:16:57
+ * @LastEditTime: 2022-07-22 12:32:30
  * @Description: app.js
  */
 const config = require("config");
@@ -34,7 +34,7 @@ app.open = async () => {
     console.log("http server listening on port " + config.port);
   });
 
-  await mongodb.open();
+  // await mongodb.open();
   // await TrackEventService.open();
   // await PlatformInfoService.open();
 };
